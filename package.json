@@ -4,7 +4,16 @@
   "main": "index.html",
   "author": "gness1804 <graham.nessler@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "parcel index.html",
+    "prettier:check": "prettier --check src/*",
+    "prettier:write": "prettier --write src/*"
+  },
   "devDependencies": {
-    "prettier": "2.0.5"
+    "prettier": "2.0.5",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "parcel": "^1.12.4"
   }
 }
