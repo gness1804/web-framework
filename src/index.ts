@@ -4,6 +4,7 @@ import { AxiosResponse } from 'axios';
 
 const user = new User({ id: 3 });
 
-user.fetch().then((res: AxiosResponse): void => {
-  console.info(res.data);
+user.events.on('click', () => {
+  console.info(`user clicked!`);
 });
+user.events.trigger('click');

@@ -1,8 +1,10 @@
-import { Callback, EventStorage, UserDataI, UserI } from '../types/types';
+import { EventingI, UserDataI, UserI } from '../types/types';
 import axios, { AxiosResponse } from 'axios';
+import { Eventing } from './Eventing';
 
 export class User implements UserI {
   private url = 'http://localhost:3000/users';
+  events: EventingI = new Eventing();
 
   constructor(private data: UserDataI) {}
 

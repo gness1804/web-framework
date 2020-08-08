@@ -11,6 +11,7 @@ export interface EventingI {
 }
 
 export interface UserI {
+  events: EventingI;
   get(propName: string): string | number;
   set(newData: UserDataI): void;
   save(): Promise<AxiosResponse>;
