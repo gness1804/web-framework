@@ -1,7 +1,9 @@
 import { Callback, EventStorage, UserDataI, UserI } from '../types/types';
+import axios, { AxiosResponse } from 'axios';
 
 export class User implements UserI {
   events: EventStorage = {};
+  private url = 'http://localhost:3000/users';
 
   constructor(private data: UserDataI) {}
 
@@ -25,5 +27,20 @@ export class User implements UserI {
     for (const handler of handlers) {
       handler();
     }
+  }
+
+  save(): Promise<AxiosResponse> {
+    return axios.post(this.url, {
+      name: this.data.name,
+      age: this.data.age,
+    });
+  }
+
+  fetch(): Promise<void> {
+    return axios
+      .get(`${this.url}/${this.data.id}`)
+      .then((res: AxiosResponse) => {
+        this.set(res.data);
+      });
   }
 }

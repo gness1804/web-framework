@@ -1,3 +1,5 @@
+import { AxiosResponse } from 'axios';
+
 // type aliases
 export type Callback = () => void;
 
@@ -8,6 +10,8 @@ export interface UserI {
   set(newData: UserDataI): void;
   on(eventName: string, callback: Callback): void;
   trigger(eventName: string): void;
+  save(): Promise<AxiosResponse>;
+  fetch(): Promise<void>;
 }
 
 // other interfaces
