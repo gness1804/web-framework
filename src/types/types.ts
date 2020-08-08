@@ -4,12 +4,15 @@ import { AxiosResponse } from 'axios';
 export type Callback = () => void;
 
 // class interfaces
-export interface UserI {
+export interface EventingI {
   events: EventStorage;
-  get(propName: string): string | number;
-  set(newData: UserDataI): void;
   on(eventName: string, callback: Callback): void;
   trigger(eventName: string): void;
+}
+
+export interface UserI {
+  get(propName: string): string | number;
+  set(newData: UserDataI): void;
   save(): Promise<AxiosResponse>;
   fetch(): Promise<AxiosResponse>;
 }
