@@ -18,4 +18,5 @@ export interface EventStorage {
 export interface UserDataI {
   name?: string;
   age?: number;
+  id?: number;
 }
