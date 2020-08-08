@@ -11,7 +11,7 @@ export interface UserI {
   on(eventName: string, callback: Callback): void;
   trigger(eventName: string): void;
   save(): Promise<AxiosResponse>;
-  fetch(): Promise<void>;
+  fetch(): Promise<AxiosResponse>;
 }
 
 // other interfaces

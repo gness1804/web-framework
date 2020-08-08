@@ -36,11 +36,7 @@ export class User implements UserI {
     });
   }
 
-  fetch(): Promise<void> {
-    return axios
-      .get(`${this.url}/${this.data.id}`)
-      .then((res: AxiosResponse) => {
-        this.set(res.data);
-      });
+  fetch(): Promise<AxiosResponse> {
+    return axios.get(`${this.url}/${this.data.id}`);
   }
 }
