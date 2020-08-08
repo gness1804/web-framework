@@ -30,10 +30,11 @@ export class User implements UserI {
   }
 
   save(): Promise<AxiosResponse> {
-    return axios.post(this.url, {
-      name: this.data.name,
-      age: this.data.age,
-    });
+    const { id } = this.data;
+    if (id) {
+      return axios.put(`${this.url}/${id}`, this.data);
+    }
+    return axios.post(this.url, this.data);
   }
 
   fetch(): Promise<AxiosResponse> {
