@@ -1,14 +1,8 @@
-interface UserDataI {
-  name?: string;
-  age?: number;
-}
-
-interface UserI {
-  get(propName: string): string | number;
-  set(newData: UserDataI): void;
-}
+import { Callback, EventStorage, UserDataI, UserI } from '../types/types';
 
 export class User implements UserI {
+  events: EventStorage = {};
+
   constructor(private data: UserDataI) {}
 
   get(propName: string): string | number {
@@ -18,4 +12,12 @@ export class User implements UserI {
   set(newData: UserDataI): void {
     this.data = { ...this.data, ...newData };
   }
+
+  on(eventName: string, callback: Callback): void {
+    const handlers = this.events[eventName] || [];
+    handlers.push(callback);
+    this.events[eventName] = handlers;
+  }
+  // will get to this later
+  trigger(eventName: string): void {}
 }

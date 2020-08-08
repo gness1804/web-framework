@@ -2,10 +2,8 @@ import { User } from './models/User';
 
 const user = new User({ name: 'Bob', age: 67 });
 
-user.set({ name: 'Ken' });
+user.on('click', () => {});
+user.on('click', () => {});
+user.on('hover', () => {});
 
-const name = user.get('name');
-const age = user.get('age');
-
-console.info(`The user's name is ${name}`);
-console.info(`The age's name is ${age}`);
+console.info(user);
