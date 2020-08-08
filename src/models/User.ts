@@ -1,16 +1,11 @@
 interface UserDataI {
-  name: string;
-  age: number;
-}
-
-interface UserDataUpdateI {
   name?: string;
   age?: number;
 }
 
 interface UserI {
   get(propName: string): string | number;
-  set(newData: UserDataUpdateI): void;
+  set(newData: UserDataI): void;
 }
 
 export class User implements UserI {
@@ -20,7 +15,7 @@ export class User implements UserI {
     return this.data[propName];
   }
 
-  set(newData: UserDataUpdateI): void {
+  set(newData: UserDataI): void {
     this.data = { ...this.data, ...newData };
   }
 }
