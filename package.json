@@ -8,13 +8,16 @@
     "start": "parcel index.html",
     "prettier:check": "prettier --check src/*",
     "prettier:write": "prettier --write src/*",
-    "lint:types": "tsc --noEmit src/*.ts"
+    "lint:types": "tsc --noEmit src/*.ts",
+    "serve": "json-server -w db.json"
   },
   "devDependencies": {
     "prettier": "2.0.5",
     "typescript": "^3.9.7"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "json-server": "^0.16.1",
     "parcel": "^1.12.4"
   }
 }
