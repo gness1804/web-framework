@@ -15,8 +15,7 @@ export class User implements UserI {
 
   on(eventName: string, callback: Callback): void {
     const handlers = this.events[eventName] || [];
-    handlers.push(callback);
-    this.events[eventName] = handlers;
+    this.events[eventName] = [...handlers, callback];
   }
   // will get to this later
   trigger(eventName: string): void {}
