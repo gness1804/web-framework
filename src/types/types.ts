@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import { AxiosPromise } from 'axios';
 
 // type aliases
 export type Callback = () => void;
@@ -11,8 +11,9 @@ export interface EventingI {
 }
 // TODO: replace the any type
 export interface SyncI {
-  save(id: number, data: any): Promise<AxiosResponse>;
-  fetch(id: number): Promise<AxiosResponse>;
+  save(data: any): AxiosPromise;
+  fetch(id: number): AxiosPromise;
+  rootUrl: string;
 }
 
 export interface UserI {
@@ -30,5 +31,9 @@ export interface EventStorage {
 export interface UserPropsI {
   name?: string;
   age?: number;
+  id?: number;
+}
+
+export interface WithId {
   id?: number;
 }

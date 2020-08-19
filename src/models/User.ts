@@ -4,7 +4,8 @@ import { Sync } from './Sync';
 
 export class User implements UserI {
   public events: EventingI = new Eventing();
-  public sync = new Sync<UserPropsI>();
+  // TODO: remove hardcode
+  public sync = new Sync<UserPropsI>('http://localhost:3000/users');
 
   constructor(private data: UserPropsI) {}
 

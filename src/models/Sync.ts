@@ -1,17 +1,16 @@
-import axios, { AxiosResponse } from 'axios';
-import { SyncI } from '../types/types';
+import axios, { AxiosPromise } from 'axios';
+import { SyncI, WithId } from '../types/types';
 
-export class Sync<T> implements SyncI {
-  private url = 'http://localhost:3000/users';
+export class Sync<T extends WithId> implements SyncI {
+  constructor(public rootUrl: string) {}
 
-  fetch(id: number): Promise<AxiosResponse<T>> {
-    return axios.get(`${this.url}/${id}`);
+  fetch(id: number): AxiosPromise {
+    return axios.get(`${this.rootUrl}/${id}`);
   }
 
-  save(id: number, data: T): Promise<AxiosResponse<T>> {
-    if (id) {
-      return axios.put(`${this.url}/${id}`, data);
-    }
-    return axios.post(this.url, data);
+  save(data: T): AxiosPromise {
+    const { id } = data;
+    if (id) return axios.put(`${this.rootUrl}/${id}`, data);
+    return axios.post(this.rootUrl, data);
   }
 }
