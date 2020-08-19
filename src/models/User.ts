@@ -1,30 +1,18 @@
-import { EventingI, UserDataI, UserI } from '../types/types';
-import axios, { AxiosResponse } from 'axios';
+import { EventingI, UserPropsI, UserI } from '../types/types';
 import { Eventing } from './Eventing';
+import { Sync } from './Sync';
 
 export class User implements UserI {
-  private url = 'http://localhost:3000/users';
   public events: EventingI = new Eventing();
+  public sync = new Sync<UserPropsI>();
 
-  constructor(private data: UserDataI) {}
+  constructor(private data: UserPropsI) {}
 
   get(propName: string): string | number {
     return this.data[propName];
   }
 
-  set(newData: UserDataI): void {
+  set(newData: UserPropsI): void {
     this.data = { ...this.data, ...newData };
-  }
-
-  save(): Promise<AxiosResponse> {
-    const { id } = this.data;
-    if (id) {
-      return axios.put(`${this.url}/${id}`, this.data);
-    }
-    return axios.post(this.url, this.data);
-  }
-
-  fetch(): Promise<AxiosResponse> {
-    return axios.get(`${this.url}/${this.data.id}`);
   }
 }
