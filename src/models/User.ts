@@ -4,7 +4,7 @@ import { Eventing } from './Eventing';
 
 export class User implements UserI {
   private url = 'http://localhost:3000/users';
-  events: EventingI = new Eventing();
+  public events: EventingI = new Eventing();
 
   constructor(private data: UserDataI) {}
 
