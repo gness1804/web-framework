@@ -4,6 +4,12 @@ import { AxiosPromise } from 'axios';
 export type Callback = () => void;
 
 // class interfaces
+// TODO: replace the any type
+export interface AttributesI {
+  get(propName: any): any;
+  set(newData: UserPropsI): void;
+}
+
 export interface EventingI {
   events: EventStorage;
   on(eventName: string, callback: Callback): void;
@@ -19,8 +25,6 @@ export interface SyncI {
 export interface UserI {
   events: EventingI;
   sync: SyncI;
-  get(propName: string): string | number;
-  set(newData: UserPropsI): void;
 }
 
 // other interfaces
