@@ -8,7 +8,7 @@
     "start": "parcel index.html",
     "prettier:check": "prettier --check src/*",
     "prettier:write": "prettier --write src/*",
-    "lint:types": "tsc --noEmit src/*.ts",
+    "lint:types": "tsc --noEmit -t es5 src/*.ts",
     "serve": "json-server -w db.json"
   },
   "devDependencies": {

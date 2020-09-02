@@ -13,4 +13,16 @@ export class User implements UserI {
   constructor(public data: UserPropsI) {
     this.attributes = new Attributes<UserPropsI>(data);
   }
+
+  get get() {
+    return this.attributes.get;
+  }
+
+  get trigger() {
+    return this.events.trigger;
+  }
+
+  get on() {
+    return this.events.on;
+  }
 }
