@@ -1,4 +1,5 @@
 import { AxiosPromise } from 'axios';
+import { Attributes } from '../models/Attributes';
 
 // type aliases
 export type Callback = () => void;
@@ -25,6 +26,7 @@ export interface SyncI {
 export interface UserI {
   events: EventingI;
   sync: SyncI;
+  attributes: Attributes<UserPropsI>;
 }
 
 // other interfaces

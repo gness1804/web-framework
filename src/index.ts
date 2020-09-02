@@ -1,6 +1,8 @@
 import { User } from './models/User';
 
-const user = new User({ id: 3 });
+const user = new User({ name: 'Kenneth' });
+const name = user.attributes.get('name');
+console.info('name', name);
 
 const { events } = user;
 
