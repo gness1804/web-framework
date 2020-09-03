@@ -2,6 +2,7 @@ import { EventingI, UserPropsI, UserI } from '../types/types';
 import { Eventing } from './Eventing';
 import { Sync } from './Sync';
 import { Attributes } from './Attributes';
+import { AxiosResponse } from 'axios';
 
 const url = 'http://localhost:3000/users';
 
@@ -29,5 +30,16 @@ export class User implements UserI {
   set(update: UserPropsI): void {
     this.attributes.set(update);
     this.events.trigger('change');
+  }
+
+  fetch(): void {
+    const id = this.attributes.get('id');
+
+    if (typeof id !== 'number')
+      throw new Error('Cannot fetch without a valid id that is a number.');
+
+    this.sync.fetch(id).then((res: AxiosResponse): void => {
+      this.set(res.data);
+    });
   }
 }
