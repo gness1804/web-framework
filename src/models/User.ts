@@ -25,4 +25,9 @@ export class User implements UserI {
   get on() {
     return this.events.on;
   }
+
+  set(update: UserPropsI): void {
+    this.attributes.set(update);
+    this.events.trigger('change');
+  }
 }

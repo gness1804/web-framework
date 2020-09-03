@@ -5,9 +5,8 @@ const user = new User({ name: 'Kenneth', age: 50 });
 const name = user.get('name');
 console.info('name', name);
 
-user.on('click', () => {
-  console.info('I clicked!');
+user.on('change', () => {
+  console.info('change event triggered');
 });
 
-user.trigger('click');
-user.trigger('click');
+user.set({ name: 'Phil' }); // triggers change event
