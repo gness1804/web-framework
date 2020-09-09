@@ -5,10 +5,10 @@ import { Attributes } from '../models/Attributes';
 export type Callback = (addlData?: any) => void;
 
 // class interfaces
-// TODO: replace the any type
-export interface AttributesI {
-  get(propName: any): any;
-  set(newData: UserPropsI): void;
+export interface AttributesI<T> {
+  get<K extends keyof T>(key: K): T[K];
+  set(newData: T): void;
+  getAll(): T;
 }
 
 export interface EventingI {

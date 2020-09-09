@@ -1,6 +1,6 @@
 import { AttributesI } from '../types/types';
 
-export class Attributes<T> implements AttributesI {
+export class Attributes<T> implements AttributesI<T> {
   constructor(private data: T) {}
 
   get = <K extends keyof T>(key: K): T[K] => {
