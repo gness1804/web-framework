@@ -8,12 +8,12 @@ export class Eventing implements EventingI {
     this.events[eventName] = [...handlers, callback];
   };
 
-  trigger = (eventName: string): void => {
+  trigger = (eventName: string, addlData?: any): void => {
     const handlers = this.events[eventName];
     if (!handlers?.length) return;
 
     for (const handler of handlers) {
-      handler();
+      handler(addlData);
     }
   };
 }

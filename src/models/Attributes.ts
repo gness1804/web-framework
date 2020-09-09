@@ -10,4 +10,8 @@ export class Attributes<T> implements AttributesI {
   set(newData: T): void {
     this.data = { ...this.data, ...newData };
   }
+
+  getAll(): T {
+    return this.data;
+  }
 }

@@ -42,4 +42,16 @@ export class User implements UserI {
       this.set(res.data);
     });
   }
+
+  save(): void {
+    const data = this.attributes.getAll();
+    this.sync
+      .save(data)
+      .then((res: AxiosResponse<UserPropsI>): void => {
+        this.events.trigger('save', res.data);
+      })
+      .catch((err) => {
+        console.error(`Problem saving data: ${err}`);
+      });
+  }
 }

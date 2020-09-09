@@ -2,7 +2,7 @@ import { AxiosPromise } from 'axios';
 import { Attributes } from '../models/Attributes';
 
 // type aliases
-export type Callback = () => void;
+export type Callback = (addlData?: any) => void;
 
 // class interfaces
 // TODO: replace the any type
@@ -14,7 +14,7 @@ export interface AttributesI {
 export interface EventingI {
   events: EventStorage;
   on(eventName: string, callback: Callback): void;
-  trigger(eventName: string): void;
+  trigger(eventName: string, data?: any): void;
 }
 // TODO: replace the any type
 export interface SyncI {
