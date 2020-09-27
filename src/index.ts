@@ -1,15 +1,16 @@
 import { User } from './models/User';
 
-const user = new User({ id: 1, name: 'Kenneth' });
+const ken = User.buildUser({ id: 1, name: 'Kenneth' });
 
-user.on('change', () => {
-  console.info('User data:', user);
+ken.on('change', () => {
+  console.info('User data:', ken);
 });
 
-user.on('save', (info?: any) => {
+ken.on('save', (info?: any) => {
   console.info('Saved user data.');
   console.info('data:', info);
 });
 
-user.fetch();
-user.save();
+ken.fetch();
+ken.save();
+ken.get('id');

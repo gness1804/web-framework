@@ -1,5 +1,4 @@
 import { AxiosPromise } from 'axios';
-import { Attributes } from '../models/Attributes';
 
 // type aliases
 export type Callback = (addlData?: any) => void;
@@ -16,17 +15,11 @@ export interface EventingI {
   on(eventName: string, callback: Callback): void;
   trigger(eventName: string, data?: any): void;
 }
-// TODO: replace the any type
-export interface SyncI {
-  save(data: any): AxiosPromise;
-  fetch(id: number): AxiosPromise;
-  rootUrl: string;
-}
 
-export interface UserI {
-  events: EventingI;
-  sync: SyncI;
-  attributes: Attributes<UserPropsI>;
+export interface SyncI<T> {
+  save(data: T): AxiosPromise<T>;
+  fetch(id: number): AxiosPromise<T>;
+  rootUrl: string;
 }
 
 // other interfaces

@@ -1,7 +1,7 @@
 import axios, { AxiosPromise } from 'axios';
 import { SyncI, WithId } from '../types/types';
 
-export class Sync<T extends WithId> implements SyncI {
+export class Sync<T extends WithId> implements SyncI<T> {
   constructor(public rootUrl: string) {}
 
   fetch(id: number): AxiosPromise<T> {
