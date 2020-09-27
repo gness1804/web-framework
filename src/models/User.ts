@@ -2,7 +2,7 @@ import { UserPropsI } from '../types/types';
 import { Model } from './Model';
 import { Attributes } from './Attributes';
 import { Eventing } from './Eventing';
-import { Sync } from './Sync';
+import { ApiSync } from './ApiSync';
 
 const url = 'http://localhost:3000/users';
 
@@ -11,7 +11,7 @@ export class User extends Model<UserPropsI> {
     return new User(
       new Attributes<UserPropsI>(attrs),
       new Eventing(),
-      new Sync<UserPropsI>(url),
+      new ApiSync<UserPropsI>(url),
     );
   }
 }

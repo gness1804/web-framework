@@ -13,4 +13,5 @@ ken.on('save', (info?: any) => {
 
 ken.fetch();
 ken.save();
-ken.get('id');
+const id = ken.get('id');
+console.info("The user's id", id);
