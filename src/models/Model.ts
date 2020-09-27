@@ -8,17 +8,11 @@ export class Model<T extends WithId> {
     private sync: SyncI<T>,
   ) {}
 
-  get get() {
-    return this.attributes.get;
-  }
+  get = this.attributes.get;
 
-  get trigger() {
-    return this.events.trigger;
-  }
+  trigger = this.events.trigger;
 
-  get on() {
-    return this.events.on;
-  }
+  on = this.events.on;
 
   set(update: T): void {
     this.attributes.set(update);
