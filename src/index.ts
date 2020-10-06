@@ -1,17 +1,11 @@
-import { User } from './models/User';
+import { Collection } from './models/Collection';
 
-const ken = User.buildUser({ id: 1, name: 'Kenneth' });
+const url = 'http://localhost:3000/users';
 
-ken.on('change', () => {
-  console.info('User data:', ken);
+const collection = new Collection(url);
+
+collection.on('change', () => {
+  console.info('change event fired for collection:', collection);
 });
 
-ken.on('save', (info?: any) => {
-  console.info('Saved user data.');
-  console.info('data:', info);
-});
-
-ken.fetch();
-ken.save();
-const id = ken.get('id');
-console.info("The user's id", id);
+collection.fetch();
