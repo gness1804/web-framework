@@ -1,9 +1,12 @@
 import { User } from './models/User';
 
-const user = new User({ id: 1 });
+const url = 'http://localhost:3000/users';
 
-user.on('change', () => {
-  console.info('User data:', user);
+const collection = User.buildCollection(url);
+
+collection.on('change', () => {
+  console.info('change event fired for collection:', collection);
 });
 
-user.fetch();
+collection.fetch();
+console.info('models', collection.models);
