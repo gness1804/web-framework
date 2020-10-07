@@ -1,13 +1,13 @@
-import { UserPropsI } from '../types/types';
 import axios, { AxiosResponse } from 'axios';
-import { User } from './User';
 import { Eventing } from './Eventing';
 
-export class Collection {
-  models: User[] = []; // TODO: change from User to generic type
+// T = class User
+// K = UserPropsI
+export class Collection<T, K> {
+  models: T[] = [];
   events: Eventing = new Eventing();
 
-  constructor(public url: string) {}
+  constructor(public url: string, public deserialize: (json: K) => T) {}
 
   get on() {
     return this.events.on;
@@ -19,8 +19,8 @@ export class Collection {
 
   fetch(): void {
     axios.get(this.url).then((res: AxiosResponse) => {
-      res.data.forEach((user: UserPropsI) => {
-        this.models.push(User.buildUser(user));
+      res.data.forEach((item: K) => {
+        this.models.push(this.deserialize(item));
       });
       this.trigger('change');
     });
