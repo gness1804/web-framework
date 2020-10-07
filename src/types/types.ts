@@ -3,7 +3,7 @@ import { AxiosPromise } from 'axios';
 // type aliases
 export type Callback = (addlData?: any) => void;
 
-// class interfaces
+// class interfaces - models
 export interface AttributesI<T> {
   get<K extends keyof T>(key: K): T[K];
   set(newData: T): void;
@@ -20,6 +20,14 @@ export interface SyncI<T> {
   save(data: T): AxiosPromise<T>;
   fetch(id: number): AxiosPromise<T>;
   rootUrl: string;
+}
+
+// class interfaces - views
+
+export interface UserFormI {
+  parent: HTMLElement;
+  createTemplate: () => string;
+  render: () => void;
 }
 
 // other interfaces
