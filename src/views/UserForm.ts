@@ -1,7 +1,7 @@
 import { UserFormI } from './../types/types';
 
 export class UserForm implements UserFormI {
-  parent: HTMLElement;
+  constructor(public parent: HTMLElement) {}
 
   createTemplate(): string {
     return `
@@ -9,5 +9,11 @@ export class UserForm implements UserFormI {
     `;
   }
 
-  render(): void {}
+  render(): void {
+    const templateElement: HTMLTemplateElement = document.createElement(
+      'template',
+    );
+    templateElement.innerHTML = this.createTemplate();
+    this.parent.append(templateElement.content);
+  }
 }
