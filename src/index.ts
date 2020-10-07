@@ -1,12 +1,8 @@
-import { UserPropsI } from './types/types';
 import { User } from './models/User';
-import { Collection } from './models/Collection';
 
 const url = 'http://localhost:3000/users';
 
-const collection = new Collection<User, UserPropsI>(url, (data: UserPropsI) =>
-  User.buildUser(data),
-);
+const collection = User.buildCollection(url);
 
 collection.on('change', () => {
   console.info('change event fired for collection:', collection);
