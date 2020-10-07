@@ -1,12 +1,5 @@
-import { User } from './models/User';
+import { UserForm } from './views/UserForm';
+const parentElement = document.getElementById('root');
 
-const url = 'http://localhost:3000/users';
-
-const collection = User.buildCollection(url);
-
-collection.on('change', () => {
-  console.info('change event fired for collection:', collection);
-});
-
-collection.fetch();
-console.info('models', collection.models);
+const userForm = new UserForm(parentElement);
+userForm.render();
