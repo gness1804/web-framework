@@ -23,14 +23,19 @@ export interface SyncI<T> {
 }
 
 // class interfaces - views
-
 export interface UserFormI {
   parent: HTMLElement;
+  implementEventsMap: () => EventObjI;
+  onButtonClick: () => void;
   createTemplate: () => string;
   render: () => void;
 }
 
 // other interfaces
+export interface EventObjI {
+  [key: string]: () => void;
+}
+
 export interface EventStorage {
   [key: string]: Callback[];
 }

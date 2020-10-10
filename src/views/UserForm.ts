@@ -1,11 +1,23 @@
-import { UserFormI } from './../types/types';
+import { EventObjI, UserFormI } from '../types/types';
 
 export class UserForm implements UserFormI {
   constructor(public parent: HTMLElement) {}
 
+  implementEventsMap(): EventObjI {
+    return {
+      'click:button': this.onButtonClick,
+    };
+  }
+
+  onButtonClick(): void {
+    console.info('clicked the method.');
+  }
+
   createTemplate(): string {
     return `
-      <p>Hello</p>
+      <h1>User Form</h1>
+      <input />
+      <button>Click Me</button>
     `;
   }
 
