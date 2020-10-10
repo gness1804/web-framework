@@ -6,11 +6,16 @@ export class UserForm implements UserFormI {
   returnEventsMap(): EventObjI {
     return {
       'click:button': this.onButtonClick,
+      'mouseenter:h1': this.onHeaderHover,
     };
   }
 
   onButtonClick(): void {
     console.info('clicked the method.');
+  }
+
+  onHeaderHover(): void {
+    console.info('hovered over the header.');
   }
 
   createTemplate(): string {
