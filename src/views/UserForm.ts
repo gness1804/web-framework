@@ -27,5 +27,17 @@ export class UserForm implements UserFormI {
     );
     templateElement.innerHTML = this.createTemplate();
     this.parent.append(templateElement.content);
+
+    const events = this.implementEventsMap();
+
+    for (const eventsKey in events) {
+      if ({}.hasOwnProperty.call(events, eventsKey)) {
+        const [action, element] = eventsKey.split(':');
+        const target = document.querySelector(`${element}`);
+        target.addEventListener(action, events[eventsKey]);
+      }
+    }
+    // or move down here?
+    // this.parent.append(templateElement.content);
   }
 }
