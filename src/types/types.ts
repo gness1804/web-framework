@@ -25,9 +25,10 @@ export interface SyncI<T> {
 // class interfaces - views
 export interface UserFormI {
   parent: HTMLElement;
-  implementEventsMap: () => EventObjI;
+  returnEventsMap: () => EventObjI;
   onButtonClick: () => void;
   createTemplate: () => string;
+  bindEvents: (fragment: DocumentFragment) => void;
   render: () => void;
 }
 

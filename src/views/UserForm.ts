@@ -3,7 +3,7 @@ import { EventObjI, UserFormI } from '../types/types';
 export class UserForm implements UserFormI {
   constructor(public parent: HTMLElement) {}
 
-  implementEventsMap(): EventObjI {
+  returnEventsMap(): EventObjI {
     return {
       'click:button': this.onButtonClick,
     };
@@ -21,23 +21,24 @@ export class UserForm implements UserFormI {
     `;
   }
 
+  bindEvents(fragment: DocumentFragment): void {
+    const events = this.returnEventsMap();
+    for (const eventsKey in events) {
+      if ({}.hasOwnProperty.call(events, eventsKey)) {
+        const [action, element] = eventsKey.split(':');
+        fragment.querySelectorAll(element).forEach((elem) => {
+          elem.addEventListener(action, events[eventsKey]);
+        });
+      }
+    }
+  }
+
   render(): void {
     const templateElement: HTMLTemplateElement = document.createElement(
       'template',
     );
     templateElement.innerHTML = this.createTemplate();
+    this.bindEvents(templateElement.content);
     this.parent.append(templateElement.content);
-
-    const events = this.implementEventsMap();
-
-    for (const eventsKey in events) {
-      if ({}.hasOwnProperty.call(events, eventsKey)) {
-        const [action, element] = eventsKey.split(':');
-        const target = document.querySelector(`${element}`);
-        target.addEventListener(action, events[eventsKey]);
-      }
-    }
-    // or move down here?
-    // this.parent.append(templateElement.content);
   }
 }
