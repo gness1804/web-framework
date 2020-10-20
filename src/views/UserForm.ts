@@ -15,6 +15,7 @@ export class UserForm implements UserFormI {
   returnEventsMap(): EventObjI {
     return {
       'click:button.set-age-btn': this.onRandomAgeButtonClick,
+      'click:button.set-name-btn': this.onSetNameButtonClick,
     };
   }
 
@@ -22,13 +23,24 @@ export class UserForm implements UserFormI {
     this.model.setRandomAge();
   };
 
+  onSetNameButtonClick = (): void => {
+    const name = (<HTMLInputElement>document.querySelector('.name-input'))
+      ?.value;
+    if (!name) {
+      alert('Oops, you must enter a name! Try again please.');
+      return;
+    }
+
+    this.model.set({ name });
+  };
+
   createTemplate(): string {
     return `
       <h1>User Form</h1>
       <p>User name: ${this.model.get('name')}</p>
       <p>User age: ${this.model.get('age')}</p>
-      <input />
-      <button>Click Me</button>
+      <input placeholder="Enter your name" class="name-input" />
+      <button class="set-name-btn">Set Name</button>
       <button class="set-age-btn">Set Random Age</button>
     `;
   }

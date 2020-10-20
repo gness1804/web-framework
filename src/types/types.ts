@@ -30,6 +30,7 @@ export interface UserFormI {
   bindModel: () => void;
   returnEventsMap: () => EventObjI;
   onRandomAgeButtonClick: () => void;
+  onSetNameButtonClick: () => void;
   createTemplate: () => string;
   bindEvents: (fragment: DocumentFragment) => void;
   render: () => void;
