@@ -28,8 +28,7 @@ export interface UserFormI {
   parent: HTMLElement;
   model: User;
   returnEventsMap: () => EventObjI;
-  onButtonClick: () => void;
-  onHeaderHover: () => void;
+  onRandomAgeButtonClick: () => void;
   createTemplate: () => string;
   bindEvents: (fragment: DocumentFragment) => void;
   render: () => void;

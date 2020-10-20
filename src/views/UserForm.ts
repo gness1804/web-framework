@@ -6,17 +6,12 @@ export class UserForm implements UserFormI {
 
   returnEventsMap(): EventObjI {
     return {
-      'click:button': this.onButtonClick,
-      'mouseenter:h1': this.onHeaderHover,
+      'click:button.set-age-btn': this.onRandomAgeButtonClick,
     };
   }
 
-  onButtonClick(): void {
-    console.info('clicked the method.');
-  }
-
-  onHeaderHover(): void {
-    console.info('hovered over the header.');
+  onRandomAgeButtonClick(): void {
+    console.info('hit onRandomAgeButtonClick');
   }
 
   createTemplate(): string {
@@ -26,6 +21,7 @@ export class UserForm implements UserFormI {
       <p>User age: ${this.model.get('age')}</p>
       <input />
       <button>Click Me</button>
+      <button class="set-age-btn">Set Random Age</button>
     `;
   }
 
