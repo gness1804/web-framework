@@ -27,6 +27,7 @@ export interface SyncI<T> {
 export interface UserFormI {
   parent: HTMLElement;
   model: User;
+  bindModel: () => void;
   returnEventsMap: () => EventObjI;
   onRandomAgeButtonClick: () => void;
   createTemplate: () => string;

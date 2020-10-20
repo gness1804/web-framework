@@ -2,7 +2,15 @@ import { User } from './../models/User';
 import { EventObjI, UserFormI } from '../types/types';
 
 export class UserForm implements UserFormI {
-  constructor(public parent: HTMLElement, public model: User) {}
+  constructor(public parent: HTMLElement, public model: User) {
+    this.bindModel();
+  }
+
+  bindModel(): void {
+    this.model.on('change', () => {
+      this.render();
+    });
+  }
 
   returnEventsMap(): EventObjI {
     return {
@@ -38,6 +46,8 @@ export class UserForm implements UserFormI {
   }
 
   render(): void {
+    this.parent.innerHTML = '';
+
     const templateElement: HTMLTemplateElement = document.createElement(
       'template',
     );
