@@ -10,9 +10,9 @@ export class UserForm implements UserFormI {
     };
   }
 
-  onRandomAgeButtonClick(): void {
-    console.info('hit onRandomAgeButtonClick');
-  }
+  onRandomAgeButtonClick = (): void => {
+    this.model.setRandomAge();
+  };
 
   createTemplate(): string {
     return `
