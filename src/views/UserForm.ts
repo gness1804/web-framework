@@ -1,7 +1,8 @@
+import { User } from './../models/User';
 import { EventObjI, UserFormI } from '../types/types';
 
 export class UserForm implements UserFormI {
-  constructor(public parent: HTMLElement) {}
+  constructor(public parent: HTMLElement, public model: User) {}
 
   returnEventsMap(): EventObjI {
     return {
@@ -21,6 +22,8 @@ export class UserForm implements UserFormI {
   createTemplate(): string {
     return `
       <h1>User Form</h1>
+      <p>User name: ${this.model.get('name')}</p>
+      <p>User age: ${this.model.get('age')}</p>
       <input />
       <button>Click Me</button>
     `;

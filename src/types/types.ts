@@ -1,4 +1,5 @@
 import { AxiosPromise } from 'axios';
+import { User } from '../models/User';
 
 // type aliases
 export type Callback = (addlData?: any) => void;
@@ -25,6 +26,7 @@ export interface SyncI<T> {
 // class interfaces - views
 export interface UserFormI {
   parent: HTMLElement;
+  model: User;
   returnEventsMap: () => EventObjI;
   onButtonClick: () => void;
   onHeaderHover: () => void;
