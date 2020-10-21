@@ -25,15 +25,20 @@ export interface SyncI<T> {
 
 // class interfaces - views
 export interface UserFormI {
-  parent: HTMLElement;
-  model: User;
-  bindModel: () => void;
+  createTemplate: () => string;
   returnEventsMap: () => EventObjI;
   onRandomAgeButtonClick: () => void;
   onSetNameButtonClick: () => void;
-  createTemplate: () => string;
-  bindEvents: (fragment: DocumentFragment) => void;
+}
+
+export interface ViewI<T> {
+  parent: HTMLElement;
+  model: T;
   render: () => void;
+  bindModel: () => void;
+  bindEvents: (fragment: DocumentFragment) => void;
+  createTemplate: () => string;
+  returnEventsMap: () => EventObjI;
 }
 
 // other interfaces
@@ -49,6 +54,10 @@ export interface UserPropsI {
   name?: string;
   age?: number;
   id?: number;
+}
+
+export interface ViewRequiredMembersI {
+  on: (event: string, callback: () => void) => void;
 }
 
 export interface WithId {

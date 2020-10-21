@@ -1,15 +1,11 @@
 import { User } from './../models/User';
 import { EventObjI, UserFormI } from '../types/types';
+import { View } from './View';
 
-export class UserForm implements UserFormI {
+export class UserForm extends View<User> implements UserFormI {
   constructor(public parent: HTMLElement, public model: User) {
+    super(parent, model);
     this.bindModel();
-  }
-
-  bindModel(): void {
-    this.model.on('change', () => {
-      this.render();
-    });
   }
 
   returnEventsMap(): EventObjI {
@@ -46,28 +42,5 @@ export class UserForm implements UserFormI {
       <button class="set-name-btn">Set Name</button>
       <button class="set-age-btn">Set Random Age</button>
     `;
-  }
-
-  bindEvents(fragment: DocumentFragment): void {
-    const events = this.returnEventsMap();
-    for (const eventsKey in events) {
-      if ({}.hasOwnProperty.call(events, eventsKey)) {
-        const [action, element] = eventsKey.split(':');
-        fragment.querySelectorAll(element).forEach((elem) => {
-          elem.addEventListener(action, events[eventsKey]);
-        });
-      }
-    }
-  }
-
-  render(): void {
-    this.parent.innerHTML = '';
-
-    const templateElement: HTMLTemplateElement = document.createElement(
-      'template',
-    );
-    templateElement.innerHTML = this.createTemplate();
-    this.bindEvents(templateElement.content);
-    this.parent.append(templateElement.content);
   }
 }
