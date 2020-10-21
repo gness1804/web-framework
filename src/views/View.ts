@@ -1,7 +1,8 @@
-import { EventObjI, ViewRequiredMembersI } from './../types/types';
+import { Model } from './../models/Model';
+import { EventObjI } from './../types/types';
 import { ViewI } from '../types/types';
 
-export abstract class View<T extends ViewRequiredMembersI> implements ViewI<T> {
+export abstract class View<T extends Model<U>, U> implements ViewI<T> {
   constructor(public parent: HTMLElement, public model: T) {}
 
   abstract createTemplate(): string;

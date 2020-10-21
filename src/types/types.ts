@@ -1,5 +1,4 @@
 import { AxiosPromise } from 'axios';
-import { User } from '../models/User';
 
 // type aliases
 export type Callback = (addlData?: any) => void;
@@ -55,11 +54,6 @@ export interface UserPropsI {
   age?: number;
   id?: number;
 }
-
-export interface ViewRequiredMembersI {
-  on: (event: string, callback: () => void) => void;
-}
-
 export interface WithId {
   id?: number;
 }
