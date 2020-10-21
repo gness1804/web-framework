@@ -24,14 +24,17 @@ export class UserForm implements UserFormI {
   };
 
   onSetNameButtonClick = (): void => {
-    const name = (<HTMLInputElement>document.querySelector('.name-input'))
-      ?.value;
-    if (!name) {
-      alert('Oops, you must enter a name! Try again please.');
-      return;
-    }
+    const input = <HTMLInputElement>document.querySelector('.name-input');
 
-    this.model.set({ name });
+    if (input) {
+      const name = input.value;
+      if (!name) {
+        alert('Oops, you must enter a name! Try again please.');
+        return;
+      }
+
+      this.model.set({ name });
+    }
   };
 
   createTemplate(): string {
