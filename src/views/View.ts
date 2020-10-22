@@ -1,13 +1,19 @@
 import { Model } from './../models/Model';
-import { EventObjI } from './../types/types';
+import { EventObjI, RegionsI, RegionsMapI } from './../types/types';
 import { ViewI } from '../types/types';
 
 export abstract class View<T extends Model<U>, U> implements ViewI<T> {
-  constructor(public parent: HTMLElement, public model: T) {}
+  regions: RegionsI = {};
+  constructor(public parent: Element, public model: T) {}
 
   abstract createTemplate(): string;
-  returnEventsMap(): EventObjI;
 
+  returnRegionsMap(): RegionsMapI;
+  returnRegionsMap(): RegionsMapI {
+    return {};
+  }
+
+  returnEventsMap(): EventObjI;
   returnEventsMap(): EventObjI {
     return {};
   }
@@ -30,6 +36,22 @@ export abstract class View<T extends Model<U>, U> implements ViewI<T> {
     }
   }
 
+  mapRegions(fragment: DocumentFragment): void {
+    const regionsMap = this.returnRegionsMap();
+    for (const regionName in regionsMap) {
+      if (Object.prototype.hasOwnProperty.call(regionsMap, regionName)) {
+        const parentElementSelector = regionsMap[regionName];
+        const regionElement = fragment.querySelector(parentElementSelector);
+
+        if (regionElement) {
+          this.regions[regionName] = regionElement;
+        }
+      }
+    }
+  }
+
+  onRender(): void {}
+
   render(): void {
     this.parent.innerHTML = '';
 
@@ -38,6 +60,10 @@ export abstract class View<T extends Model<U>, U> implements ViewI<T> {
     );
     templateElement.innerHTML = this.createTemplate();
     this.bindEvents(templateElement.content);
+    this.mapRegions(templateElement.content);
+
+    this.onRender();
+
     this.parent.append(templateElement.content);
   }
 }

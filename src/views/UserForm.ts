@@ -4,7 +4,7 @@ import { EventObjI, UserFormI } from '../types/types';
 import { View } from './View';
 
 export class UserForm extends View<User, UserPropsI> implements UserFormI {
-  constructor(public parent: HTMLElement, public model: User) {
+  constructor(public parent: Element, public model: User) {
     super(parent, model);
     this.bindModel();
   }

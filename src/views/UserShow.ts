@@ -3,6 +3,11 @@ import { User } from './../models/User';
 import { View } from './View';
 
 export class UserShow extends View<User, UserPropsI> {
+  constructor(public parent: Element, public model: User) {
+    super(parent, model);
+    this.bindModel();
+  }
+
   createTemplate(): string {
     return `
       <div>
