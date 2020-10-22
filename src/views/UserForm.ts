@@ -13,6 +13,7 @@ export class UserForm extends View<User, UserPropsI> implements UserFormI {
     return {
       'click:button.set-age-btn': this.onRandomAgeButtonClick,
       'click:button.set-name-btn': this.onSetNameButtonClick,
+      'click:button.save-btn': this.onSaveButtonClick,
     };
   }
 
@@ -34,14 +35,16 @@ export class UserForm extends View<User, UserPropsI> implements UserFormI {
     }
   };
 
+  onSaveButtonClick = (): void => {
+    this.model.save();
+  };
+
   createTemplate(): string {
     return `
-      <h1>User Form</h1>
-      <p>User name: ${this.model.get('name')}</p>
-      <p>User age: ${this.model.get('age')}</p>
-      <input placeholder="Enter your name" class="name-input" />
+      <input placeholder="${this.model.get('name')}" class="name-input" />
       <button class="set-name-btn">Set Name</button>
       <button class="set-age-btn">Set Random Age</button>
+      <button class="save-btn">Save</button>
     `;
   }
 }

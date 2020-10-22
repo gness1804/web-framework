@@ -28,6 +28,7 @@ export interface UserFormI {
   returnEventsMap: () => EventObjI;
   onRandomAgeButtonClick: () => void;
   onSetNameButtonClick: () => void;
+  onSaveButtonClick: () => void;
 }
 
 export interface ViewI<T> {
