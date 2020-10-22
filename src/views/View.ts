@@ -6,7 +6,11 @@ export abstract class View<T extends Model<U>, U> implements ViewI<T> {
   constructor(public parent: HTMLElement, public model: T) {}
 
   abstract createTemplate(): string;
-  abstract returnEventsMap(): EventObjI;
+  returnEventsMap(): EventObjI;
+
+  returnEventsMap(): EventObjI {
+    return {};
+  }
 
   bindModel(): void {
     this.model.on('change', () => {
