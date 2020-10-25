@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 import { Eventing } from './Eventing';
 
-// T = class User
-// K = UserPropsI
+// T = type of model. Ex.: class User
+// K = interface specifying model's properties. Ex.: UserPropsI
 export class Collection<T, K> {
   models: T[] = [];
   events: Eventing = new Eventing();

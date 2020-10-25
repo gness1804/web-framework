@@ -1,3 +1,4 @@
+import { Collection } from './../models/Collection';
 import { User } from './../models/User';
 import { AxiosPromise } from 'axios';
 import { View } from '../views/View';
@@ -25,6 +26,12 @@ export interface SyncI<T> {
 }
 
 // class interfaces - views
+export interface CollectionViewI<T, K> {
+  collection: Collection<T, K>;
+  render: () => void;
+  renderItem: (model: T, itemParent: Element) => void;
+}
+
 export interface UserFormI extends View<User, UserPropsI> {
   onRandomAgeButtonClick: () => void;
   onSetNameButtonClick: () => void;
